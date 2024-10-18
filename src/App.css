@@ -29,12 +29,11 @@ img{
   margin: 10px;
 }
 p{
-  align-items: center;
-  justify-content: center;
   display: flex;
+  justify-content: center;
 }
 .input-container{
-  margin-bottom: 10px;
+  margin: 10px;
 }
 label{
   color: rgb(61, 167, 194);
