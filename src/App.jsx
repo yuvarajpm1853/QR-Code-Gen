@@ -9,7 +9,6 @@ function App() {
   
   const generate_code = ()=> {
     setLoading(true)
-    // encodeURIComponent => Encodes a text string as a valid component of a Uniform Resource Identifier (URI)
     const code = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}`
     setQrCode(code)
     setLoading(false)
@@ -17,16 +16,8 @@ function App() {
 
   const download = async()=>{
     const image = await fetch(qrcode)
-    console.log("image", image);
-
-    // resp to as binary data
     const imageBlog = await image.blob()
-    console.log("blob",imageBlog);
-
-    // creates a string containing a URL representing the object given in the parameter. 
     const imageURL = URL.createObjectURL(imageBlog)
-    console.log("url",imageURL);
-
     const link = document.createElement('a')
     link.href = imageURL
     link.download = 'qr_code.png'
