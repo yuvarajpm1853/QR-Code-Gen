@@ -14,6 +14,26 @@ function App() {
     setQrCode(code)
     setLoading(false)
   }
+
+  const download = async()=>{
+    const image = await fetch(qrcode)
+    console.log("image", image);
+
+    // resp to as binary data
+    const imageBlog = await image.blob()
+    console.log("blob",imageBlog);
+
+    // creates a string containing a URL representing the object given in the parameter. 
+    const imageURL = URL.createObjectURL(imageBlog)
+    console.log("url",imageURL);
+
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'qr_code.png'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
   return (
     <>
     <div className="container">
@@ -35,7 +55,7 @@ function App() {
       </div>
       <button className='generate' onClick={generate_code}
       disabled = {loading}>Generate QR Code</button>
-      <button className='download'>Download QR Code</button>
+      <button className='download' onClick={download}>Download QR Code</button>
     </div>
     </>
   )
